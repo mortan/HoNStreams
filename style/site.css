@@ -1,18 +1,74 @@
+body {
+    background-color: #60615d;
+}
+
+#honIcon {
+    position: absolute;
+    left: 50px;
+}
+
+#sidebar {
+    float: left;
+}
+
 .streamList {
     border: solid 2px black;
-    width: 200px;
-    float: left;
-    margin-right: 100px;
+    width: 250px;
 }
 
 .streamContainer {
-    cursor: pointer
+    cursor: pointer;
+    position: relative;
+    height: 53px;
 }
 
 .streamContainer:nth-child(even) {
-    background-color: #b0c4de;
+    background-color: #60615d;
+}
+
+.streamContainer:nth-child(odd) {
+    background-color: rgb(0, 0, 0);
 }
 
 .streamContainer:hover {
-    background-color: #faff81;
+    background-color: rgba(33, 33, 33, 0.66);
+}
+
+.streamList > .streamContainer > .userName {
+    position: absolute;
+    left: 75px;
+    top: 4px;
+    width: 155px;
+    white-space: nowrap;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.streamList > .streamContainer > .views {
+    position: absolute;
+    left: 75px;
+    top: 25px;
+    color: #ffffff;
+}
+
+#playerWindow {
+    position: absolute;
+    left: 280px;
+    width: 700px;
+    height: 500px;
+    padding: 0.5em;
+}
+
+#embed > object{
+    width: 100%;
+    height: 100%;
+}
+
+#playerWindow h3 {
+    text-align: center;
+    margin: 0;
+}
+
+#countdownContainer {
+    text-align: center;
 }

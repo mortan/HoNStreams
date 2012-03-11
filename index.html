@@ -5,22 +5,49 @@
 	<title>HoNStreams Reloaded</title>
 
 	<link rel="stylesheet" href="style/site.css" type="text/css"/>
+	<link rel="stylesheet" href="style/ui-lightness/jquery-ui-1.8.18.custom.css" type="text/css"/>
 
 	<script src="script/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<script src="script/jstorage.js" type="text/javascript"></script>
+	<script src="script/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
 	<script src="script/knockout-2.0.0.js" type="text/javascript"></script>
 	<script src="script/flash_detect_min.js" type="text/javascript"></script>
 	<script src="js/index.js" type="text/javascript"></script>
-	<!--<script src="js/fakedata.js" type="text/javascript"></script>-->
+
+	<!-- Piwik -->
+	<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://piwik.overlinux.org/" : "http://piwik.overlinux.org/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 4);
+			piwikTracker.trackPageView();
+			piwikTracker.enableLinkTracking();
+		}
+		catch (err) {
+		}
+	</script>
+	<noscript><p><img src="http://piwik.overlinux.org/piwik.php?idsite=4" style="border:0" alt=""/></p></noscript>
+	<!-- End Piwik Tracking Code -->
 </head>
 <body>
-	<h1>Welcome to HoNStreams Reloaded</h1>
-	<div id="streamList" data-bind="foreach: streams" class="streamList">
-		<div class="streamContainer">
-			<span data-bind="text: user"></span>
-			<span data-bind="text: views"></span>
+	<div id="sidebar">
+		<div id="streamList" data-bind="foreach: streams" class="streamList">
+			<div class="streamContainer">
+				<img data-bind="attr: { src: screenCapUrl }" alt="foo"/>
+				<div data-bind="text: user" class="userName"></div>
+				<div data-bind="text: views" class="views"></div>
+			</div>
+		</div>
+		<div id="countdownContainer">
+			<span>Refresh in: </span>
+			<span data-bind="text: secondsToRefresh"></span>
 		</div>
 	</div>
-	<div id="playerWindow">
+
+	<div id="playerWindow" class="ui-widget-content ui-resizable">
+		<div id="embed"></div>
 	</div>
 </body>
 </html>
