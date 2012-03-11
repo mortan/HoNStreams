@@ -1,0 +1,18 @@
+.streamList {
+    border: solid 2px black;
+    width: 200px;
+    float: left;
+    margin-right: 100px;
+}
+
+.streamContainer {
+    cursor: pointer
+}
+
+.streamContainer:nth-child(even) {
+    background-color: #b0c4de;
+}
+
+.streamContainer:hover {
+    background-color: #faff81;
+}
