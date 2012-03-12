@@ -32,6 +32,10 @@
 	<!-- End Piwik Tracking Code -->
 </head>
 <body>
+	<noscript>
+		<div class="fullscreen">It seems you have disabled JavaScript! You need to enable it to use this website!</div>
+	</noscript>
+
 	<div id="sidebar">
 		<div id="streamList" data-bind="foreach: streams" class="streamList">
 			<div class="streamContainer">
@@ -47,6 +51,48 @@
 	</div>
 
 	<div id="playerWindow" class="ui-widget-content ui-resizable">
+		<div id="welcomeMessageContainer">
+			<div class="headLineContainer">
+				<h1>Welcome to HoNStreams</h1>
+				<img src="images/hon.png" alt="HoN"/>
+			</div>
+
+			<div>
+				<div class="whatsNewContainer">
+					<h2>What's new in this version?</h2>
+					<ul>
+						<li>New Layout</li>
+						<li>Stream window remembers size</li>
+						<li>Auto refreshing the stream list every 60 seconds</li>
+					</ul>
+				</div>
+
+				<div class="supportedFeaturesContainer">
+					<h2>Your browser supports...</h2>
+					<table>
+						<thead>
+							<th>Feature</th>
+							<th>Check</th>
+							<th>Purpose</th>
+						</thead>
+						<tbody data-bind="foreach: supportedFeatures">
+						<tr>
+							<td data-bind="text: name"></td>
+							<td>
+								<div data-bind="if: available" class="center">
+									<img src="images/circle_green.png" alt="-"/>
+								</div>
+								<div data-bind="ifnot: available" class="center">
+									<img data-bind="ifnot: available" src="images/circle_orange.png" alt="-"/>
+								</div>
+							</td>
+							<td data-bind="text: purpose"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 		<div id="embed"></div>
 	</div>
 </body>

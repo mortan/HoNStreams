@@ -7,6 +7,14 @@ $(document).ready(function() {
         // TODO: Find better solution for this crap
         var embedString = stream.embedCode.replace("auto_play=false", "auto_play=true");
         embedString = embedString.replace("height=\"295\" width=\"353\"", "height=\"500\" width=\"800\"");
+
+        var width = $.jStorage.get("playerWidth", $("#playerWindow").width());
+        var height = $.jStorage.get("playerHeight", $("#playerWindow").height());
+
+        $("#playerWindow").width(width);
+        $("#playerWindow").height(height);
+
+        $("#welcomeMessageContainer").html("");
         $("#embed").html(embedString);
     });
 
@@ -19,18 +27,28 @@ $(document).ready(function() {
             $.jStorage.set("playerHeight", ui.size.height);
         }
     });
-    var width = $.jStorage.get("playerWidth", $("#playerWindow").width());
-    var height = $.jStorage.get("playerHeight", $("#playerWindow").height());
 
-    $("#playerWindow").width(width);
-    $("#playerWindow").height(height);
-
-    if (!FlashDetect.installed) {
-        $("#playerWindow").html("<h1>Please enable Flash to watch streams!</h1>");
-    }
+    detectFeatures();
 
     ko.applyBindings(streamViewModel);
 });
+
+function detectFeatures() {
+    var available = true;
+
+    // Obvious...
+    available = true;
+    streamViewModel.supportedFeatures.push({ name: "JavaScript", available: available, purpose: "Using this site" });
+
+    if (!FlashDetect.installed) {
+        flashAvailable = false;
+        $("#playerWindow").html("<h1>Please enable Flash to watch streams!</h1>");
+    }
+    streamViewModel.supportedFeatures.push({ name: "Flash", available: available, purpose: "Watching streams"});
+
+    available = $.jStorage.storageAvailable();
+    streamViewModel.supportedFeatures.push({ name: "LocalStorage", available: available, purpose: "Remembering positions etc" });
+}
 
 function Stream() {
     this.views = 0;
@@ -44,6 +62,7 @@ function StreamViewModel(autoRefresh) {
 
     this.streams = ko.observableArray();
     this.secondsToRefresh = ko.observable(60);
+    this.supportedFeatures = ko.observableArray();
 
     self.addStream = function(stream) {
         self.streams.push(stream);
