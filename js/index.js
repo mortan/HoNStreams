@@ -164,6 +164,12 @@ var viewModel = function(refreshInterval) {
 var streamClickHandler = function(event) {
     "use strict";
 
+    if (!FlashDetect.installed)
+    {
+        $("#playerWindow").html("<h1>Please enable Flash to watch streams!</h1>");
+        return;
+    }
+
     var stream = ko.dataFor(event.target);
 
     // TODO: Find better solution for this crap
@@ -187,10 +193,7 @@ var detectBrowserFeatures = function() {
     // Obvious...
     viewModel.supportedFeatures.push({ name: "JavaScript", available: available, purpose: "Using this site" });
 
-    if (!FlashDetect.installed) {
-        available = false;
-        $("#playerWindow").html("<h1>Please enable Flash to watch streams!</h1>");
-    }
+    available = FlashDetect.installed;
     viewModel.supportedFeatures.push({ name: "Flash", available: available, purpose: "Watching streams"});
 
     available = $.jStorage.storageAvailable();
