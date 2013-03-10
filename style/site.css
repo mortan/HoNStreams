@@ -1,5 +1,6 @@
-body {
+html, body {
     background-color: #60615d;
+	height: 100%;
 }
 
 #honIcon {
@@ -9,11 +10,14 @@ body {
 
 #sidebar {
     float: left;
+	height: 100%;
 }
 
 .streamList {
     border: solid 2px black;
     width: 250px;
+	overflow-y: scroll;
+	height: 90%;
 }
 
 .streamContainer {

@@ -133,7 +133,7 @@ var viewModel = function(refreshInterval) {
 
     var fetchStreams = function () {
         isUpdating = true;
-        var url = "http://api.justin.tv/api/stream/list.json?category=gaming&strategy&meta_game=Heroes%20of%20Newerth&limit=10";
+        var url = "http://api.justin.tv/api/stream/list.json?category=gaming&strategy&meta_game=Heroes%20of%20Newerth";
         $.ajax({
             url: url + "&jsonp=?",
             type: "GET",
